@@ -1,10 +1,12 @@
 package com.hendisantika.springmvcemail.config;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -54,5 +56,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText("This is the test email template for your email:\n%s\n");
         return message;
+    }
+
+    @Bean
+    public RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.build();
     }
 }

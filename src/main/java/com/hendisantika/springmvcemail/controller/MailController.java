@@ -1,6 +1,7 @@
 package com.hendisantika.springmvcemail.controller;
 
 import java.lang.management.ManagementFactory;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,15 +22,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by IntelliJ IDEA. User: hendisantika Email: hendisantika@gmail.com Telegram : @hendisantika34 Date: 8/15/17
@@ -171,7 +180,7 @@ public class MailController {
         return "redirect:/home";
     }
 
-    @Scheduled(initialDelay = 120000, fixedRate = 120000)
+//    @Scheduled(initialDelay = 120000, fixedRate = 120000)
     public void checkCpuLoad() {
         emailService.sendSimpleMessage("jmartinez01581@gmail.com",
             "New api email", "Hello Dear User TESTBI\n"
