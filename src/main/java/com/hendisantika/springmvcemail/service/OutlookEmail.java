@@ -3,6 +3,9 @@ package com.hendisantika.springmvcemail.service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import java.sql.DatabaseMetaData;
+import java.util.Date;
 import java.util.Properties;
 
 import org.springframework.stereotype.Component;
@@ -41,7 +44,7 @@ public class OutlookEmail {
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse("jmartinez01581@gmail.com"));   // like inzi769@gmail.com
             message.setSubject("OutlookEmail");
-            message.setText("HI you have done sending mail with outlook");
+            message.setText("HI you have done sending mail with outlook " + new Date());
 
             Transport.send(message);
 
