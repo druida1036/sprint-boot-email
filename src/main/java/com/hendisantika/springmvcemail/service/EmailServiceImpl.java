@@ -26,8 +26,11 @@ import java.io.File;
 public class EmailServiceImpl implements EmailService{
     @Autowired
     public JavaMailSender emailSender;
+    @Autowired
+    private OutlookEmail outlookEmail;
 
     public void sendSimpleMessage(String to, String subject, String text) {
+        outlookEmail.sendEmail();
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
